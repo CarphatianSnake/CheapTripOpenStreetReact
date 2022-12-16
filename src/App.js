@@ -23,7 +23,6 @@ function App({ loading, setLoading }) {
   const [airportsActive, setAirportsActive] = useState(false);
   const [json, setJson] = useState(null);
   const [cityName, setCityName] = useState("");
-  const [autoCompleteData, setAutoCompleteData] = useState([]);
   const [options, setOptions] = useState();
   const [searchMarker, setSearchMarker] = useState(null);
 
@@ -72,16 +71,6 @@ function App({ loading, setLoading }) {
     let midata=[
       rescity]
     setMyJson(midata)
-}
-  const findAutocomplete = async (cityName) => {
-    const url = `https://photon.komoot.io/api/?q=${cityName}&osm_tag=place:city`;
-    const response = await fetch(url);
-    let data = (await response.json()).features;
-    //console.log("DATA",data);
-    // data = data.map((feature) => feature.properties.name);
-    // console.log(data);
-    // setAutoCompleteData(data);
-    return data;
   };
 
   const resultClick = (city) => {
@@ -101,37 +90,23 @@ function App({ loading, setLoading }) {
       });
     }
   };
-
-  const onChangeHandler = async (text) => {
-    setCityName(text);
-    let matches = [];
-    if (text.length > 0) {
-      const data = await findAutocomplete(text);
-      // console.log(data);
-      matches = data.map((feature) => feature.properties.name);
-      matches = matches.filter((a, b) => matches.indexOf(a) === b);
-    }
-    //console.log("matches", matches);
-    setOptions(matches);
-   
-  };
+  
   return (
     <div className="App">
       <div className="searchBox">
         <AutoComplete
-          onChange={(e) => {
-            onChangeHandler(e.target.value);
-          }}
-          placeholder="type city name"
-          value = {cityName}
+          placeholder="Type city name"
+          value={cityName}
           setValue={setCityName}
-          options = {options}
+          options={options}
           setOptions={setOptions}
+          findCities={findCities}
+          setJson={setJson}
         />
-        {options &&
+        {/* {options &&
           options.map((option, i) => {
             <div key={i}>option</div>;
-          })}
+          })}                               // didn't understand what usage of this code */}
         <button
           className="searchBtn"
           onClick={() => {

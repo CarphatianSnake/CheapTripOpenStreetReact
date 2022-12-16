@@ -3,6 +3,7 @@
   z-index: 999;
   position:relative;
 }
+
 .autoComplete .input{
   width:100%;
   min-width:300px;
@@ -13,6 +14,7 @@
   height:100%;
   box-sizing: border-box;
 }
+
 .autoComplete ul{
   width:100%;
   background-color:white;
@@ -20,6 +22,7 @@
   margin:0;
   padding:0;
 }
+
 .autoComplete li{
   margin:0;
   height:40px;
@@ -29,7 +32,18 @@
   padding:5px;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
 }
-.autoComplete li:hover{
+
+.autoComplete ul > .active,
+.autoComplete ul li:hover{
   background-color:rgb(163, 155, 155);
+}
+
+.autoComplete li:not(:last-of-type) {
+  border-bottom: 1px solid #999;
+}
+
+.no-autocomplete {
+  color: rgb(170, 71, 71);
 }
