@@ -35,10 +35,12 @@ const AutoComplete = ({
   };
 
   const onClick = (e) => {
+    const text = e.currentTarget.innerText;
     setActive(0);
     setOptions([]);
     setIsShowOptions(false);
-    setValue(e.currentTarget.innerText);
+    setValue(text);
+    findCities(text);
   };
 
   const onKeyDown = (e) => {
