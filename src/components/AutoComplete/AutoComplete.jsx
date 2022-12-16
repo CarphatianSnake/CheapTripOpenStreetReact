@@ -7,8 +7,7 @@ const AutoComplete = ({
   placeholder,
   options,
   setOptions,
-  findCities,
-  setJson
+  findCities
 }) => {
 
   const [active, setActive] = useState(0);
@@ -48,9 +47,8 @@ const AutoComplete = ({
         setActive(0);
         setIsShowOptions(false);
         setValue(options[active]);
+        findCities(options[active]);
         setOptions([]);
-        setJson(null);
-        findCities(value);
       }
     }
     else if (e.keyCode === 38) { // up arrow

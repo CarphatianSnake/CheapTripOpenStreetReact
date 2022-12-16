@@ -101,7 +101,6 @@ function App({ loading, setLoading }) {
           options={options}
           setOptions={setOptions}
           findCities={findCities}
-          setJson={setJson}
         />
         {/* {options &&
           options.map((option, i) => {
