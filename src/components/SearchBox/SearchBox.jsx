@@ -23,7 +23,6 @@ const SearchBox = ({setJson}) => {
   return (
     <div className="searchBox">
       <AutoComplete
-        placeholder="Type city name"
         value={cityName}
         setValue={setCityName}
         options={options}
