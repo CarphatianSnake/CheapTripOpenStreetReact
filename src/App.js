@@ -22,8 +22,6 @@ function App({ loading, setLoading }) {
   const [citiesActive, setCitiesActive] = useState(false);
   const [airportsActive, setAirportsActive] = useState(false);
   const [json, setJson] = useState(null);
-  const [cityName, setCityName] = useState("");
-  const [options, setOptions] = useState();
   const [searchMarker, setSearchMarker] = useState(null);
 
   const [myjson, setMyJson] = useState(null);
@@ -83,13 +81,7 @@ function App({ loading, setLoading }) {
   return (
     <div className="App">
 
-      <SearchBox 
-        options={options}
-        setOptions={setOptions}
-        cityName={cityName}
-        setCityName={setCityName}
-        setJson={setJson}
-      />
+      <SearchBox setJson={setJson} />
 
       <div className="main">
         <div className="results">

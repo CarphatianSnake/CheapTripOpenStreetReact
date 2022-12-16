@@ -1,15 +1,14 @@
+import { useState } from "react";
+
 import AutoComplete from "./AutoComplete/AutoComplete";
 import SearchButton from "./SearchButton/SearchButton";
 
 import './SearchBox.css';
 
-const SearchBox = ({
-  options,
-  setOptions,
-  cityName,
-  setCityName,
-  setJson
-}) => {
+const SearchBox = ({setJson}) => {
+
+  const [options, setOptions] = useState([]);
+  const [cityName, setCityName] = useState('');
 
   const findCities = async (cityName) => {
     const url = `https://nominatim.openstreetmap.org/search?city=${cityName}&format=geojson`;
