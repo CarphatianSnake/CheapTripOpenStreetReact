@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import onChangeHandler from "./utils/onChangeHandler";
-import onKeyDown from "./utils/onKeyDown";
-import renderAutocomplete from "./utils/renderAutocomplete";
+import OptionsList from "./OptionsList/OptionsList";
+import onChangeHandler from "./onChangeHandler";
+import onKeyDown from "./onKeyDown";
 
 import './AutoComplete.css';
 
@@ -16,6 +16,7 @@ const AutoComplete = ({
 
   const [active, setActive] = useState(0);
   const [isShowOptions, setIsShowOptions] = useState(false);
+  const [isShowResults, setIsShowResults] = useState(false);
 
   return (
     <div className="autoComplete">
@@ -27,7 +28,17 @@ const AutoComplete = ({
         value={cityName}
         placeholder="Type city name"
       />
-      {renderAutocomplete(setActive, active, setOptions, options, isShowOptions, setIsShowOptions, cityName, setCityName, findCities)}
+      <OptionsList
+        setActive={setActive}
+        active={active}
+        setOptions={setOptions}
+        options={options}
+        isShowOptions={isShowOptions}
+        setIsShowOptions={setIsShowOptions}
+        cityName={cityName}
+        setCityName={setCityName}
+        findCities={findCities}
+      />
     </div>
   );
 }
