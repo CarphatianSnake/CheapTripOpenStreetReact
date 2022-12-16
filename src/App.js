@@ -15,7 +15,7 @@ import * as Actions from "./redux/AppStateReducer/ActionCreators";
 import airportIcon from "./assets/airport";
 import L from "leaflet";
 import SearchResult from "./components/SearchResult/SearchResult";
-import AutoComplete from "./components/AutoComplete/AutoComplete";
+import SearchBox from "./components/SearchBox/SearchBox";
 
 function App({ loading, setLoading }) {
   const [map, setMap] = useState(null);
@@ -35,17 +35,6 @@ function App({ loading, setLoading }) {
       return false;
     }
   });
-   
-
-  const findCities = async (cityName) => {
-    const url = `https://nominatim.openstreetmap.org/search?city=${cityName}&format=geojson`;
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setJson(data.features);
-        // console.log(data.features[0].properties);
-      });
-  };
 
   const findMyCities = (city)=>{
     
@@ -93,28 +82,15 @@ function App({ loading, setLoading }) {
   
   return (
     <div className="App">
-      <div className="searchBox">
-        <AutoComplete
-          placeholder="Type city name"
-          value={cityName}
-          setValue={setCityName}
-          options={options}
-          setOptions={setOptions}
-          findCities={findCities}
-        />
-        {/* {options &&
-          options.map((option, i) => {
-            <div key={i}>option</div>;
-          })}                               // didn't understand what usage of this code */}
-        <button
-          className="searchBtn"
-          onClick={() => {
-            findCities(cityName);
-          }}
-        >
-          search
-        </button>
-      </div>
+
+      <SearchBox 
+        options={options}
+        setOptions={setOptions}
+        cityName={cityName}
+        setCityName={setCityName}
+        setJson={setJson}
+      />
+
       <div className="main">
         <div className="results">
           {json &&
