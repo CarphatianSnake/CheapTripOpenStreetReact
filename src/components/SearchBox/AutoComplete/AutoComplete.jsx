@@ -7,8 +7,8 @@ import renderAutocomplete from "./utils/renderAutocomplete";
 import './AutoComplete.css';
 
 const AutoComplete = ({
-  value,
-  setValue,
+  cityName,
+  setCityName,
   options,
   setOptions,
   findCities
@@ -22,12 +22,12 @@ const AutoComplete = ({
       <input
         className="input"
         type="text"
-        onChange={(e) => onChangeHandler(e, setValue, setActive, setOptions, setIsShowOptions)}
-        onKeyDown={(e) => onKeyDown(e, setActive, active, setIsShowOptions, setValue, findCities, setOptions, options)}
-        value={value}
+        onChange={(e) => onChangeHandler(e, setCityName, setActive, setOptions, setIsShowOptions)}
+        onKeyDown={(e) => onKeyDown(e, setActive, active, setIsShowOptions, setCityName, findCities, setOptions, options)}
+        value={cityName}
         placeholder="Type city name"
       />
-      {renderAutocomplete(setActive, active, setOptions, options, isShowOptions, setIsShowOptions, value, setValue, findCities)}
+      {renderAutocomplete(setActive, active, setOptions, options, isShowOptions, setIsShowOptions, cityName, setCityName, findCities)}
     </div>
   );
 }

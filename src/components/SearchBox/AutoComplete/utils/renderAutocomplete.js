@@ -1,15 +1,15 @@
-const renderAutocomplete = (setActive, active, setOptions, options, isShowOptions, setIsShowOptions, value, setValue, findCities) => {
+const renderAutocomplete = (setActive, active, setOptions, options, isShowOptions, setIsShowOptions, cityName, setCityName, findCities) => {
 
   const onClick = (e) => {
     const text = e.currentTarget.innerText;
     setActive(0);
     setOptions([]);
     setIsShowOptions(false);
-    setValue(text);
+    setCityName(text);
     findCities(text);
   };
 
-  if (isShowOptions && value) {
+  if (isShowOptions && cityName) {
     if (options.length) {
       return (
         <ul className="autocomplete">

@@ -5,9 +5,9 @@ const findAutocomplete = async (cityName) => {
   return data;
 };
 
-const onChangeHandler = async (e, setValue, setActive, setOptions, setIsShowOptions) => {
+const onChangeHandler = async (e, setCityName, setActive, setOptions, setIsShowOptions) => {
   const text = e.target.value;
-  setValue(text);
+  setCityName(text);
   let matches = [];
   if (text.length > 0) {
     const data = await findAutocomplete(text);

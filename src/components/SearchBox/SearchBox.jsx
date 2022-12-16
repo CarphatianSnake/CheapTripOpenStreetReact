@@ -24,8 +24,8 @@ const SearchBox = ({setJson}) => {
   return (
     <div className="searchBox">
       <AutoComplete
-        value={cityName}
-        setValue={setCityName}
+        cityName={cityName}
+        setCityName={setCityName}
         options={options}
         setOptions={setOptions}
         findCities={findCities}

@@ -1,9 +1,9 @@
-const onKeyDown = (e, setActive, active, setIsShowOptions, setValue, findCities, setOptions, options) => {
+const onKeyDown = (e, setActive, active, setIsShowOptions, setCityName, findCities, setOptions, options) => {
   if (e.keyCode === 13) { // enter key
     if (options.length > 0) {
       setActive(0);
       setIsShowOptions(false);
-      setValue(options[active]);
+      setCityName(options[active]);
       findCities(options[active]);
       setOptions([]);
     }
