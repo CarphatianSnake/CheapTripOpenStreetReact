@@ -11,6 +11,7 @@ const SearchBox = ({setJson}) => {
   const [cityName, setCityName] = useState('');
 
   const findCities = async (cityName) => {
+    setJson(null);
     const url = `https://nominatim.openstreetmap.org/search?city=${cityName}&format=geojson`;
     fetch(url)
       .then((response) => response.json())
