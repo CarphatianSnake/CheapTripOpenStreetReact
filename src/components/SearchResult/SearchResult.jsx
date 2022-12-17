@@ -1,5 +1,5 @@
 import "./SearchResult.css"
-export default function SearchResult({city,resultClick}) {
+export default function SearchResult({city, resultClick}) {
   console.log(city);
   return (
     <div className="SearchResult" onClick={()=>{resultClick(city)}}>

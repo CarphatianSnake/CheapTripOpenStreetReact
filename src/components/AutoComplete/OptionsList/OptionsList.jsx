@@ -7,13 +7,12 @@ const OptionsList = ({
   active,
   setOptions,
   options,
-  isShowOptions,
   setIsShowOptions,
-  cityName,
-  setCityName,
+  show,
+  setInputValue,
   findCities
 }) => {
-  if (isShowOptions && cityName) {
+  if (show) {
     if (options.length) {
       return (
         <ul className="options-list">
@@ -23,7 +22,8 @@ const OptionsList = ({
               <li
                 className={`options-list-item ${className}`}
                 key={option}
-                onClick={(e) => onClick(e, setActive, setOptions, setIsShowOptions, setCityName, findCities)}>
+                onMouseEnter={() => setActive(index)}
+                onClick={(e) => onClick(e, setActive, setOptions, setIsShowOptions, setInputValue, findCities)}>
                   {option}
               </li>
             );

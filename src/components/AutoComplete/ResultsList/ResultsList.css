@@ -1,4 +1,4 @@
-.options-list{
+.results-list {
   width: 100%;
   background-color: white;
   list-style: none;
@@ -6,27 +6,27 @@
   padding: 0;
 }
 
-.options-list-item{
+.results-list-item {
   margin: 0;
-  height: 40px;
+  height: auto;
   display: block;
   border: 2px solid black;
-  font-size: 1.3rem;
+  font-size: 1rem;
   padding: 5px;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
   cursor: pointer;
 }
 
-.options-list > .active,
-.options-list-item:hover{
+.results-list > .active,
+.results-list-item:hover{
   background-color: rgb(211, 208, 208);
 }
 
-.options-list-item:not(:last-of-type) {
+.results-list-item:not(:last-of-type) {
   border-bottom: 1px solid #999;
 }
 
-.no-options {
+.no-results {
   color: rgb(170, 71, 71);
 }

@@ -1,9 +1,9 @@
-const onClick = (e, setActive, setOptions, setIsShowOptions, setCityName, findCities) => {
+const onClick = (e, setActive, setOptions, setIsShowOptions, setInputValue, findCities) => {
   const text = e.currentTarget.innerText;
   setActive(0);
   setOptions([]);
   setIsShowOptions(false);
-  setCityName(text);
+  setInputValue(text);
   findCities(text);
 };
 

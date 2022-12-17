@@ -15,16 +15,15 @@ import * as Actions from "./redux/AppStateReducer/ActionCreators";
 import airportIcon from "./assets/airport";
 import L from "leaflet";
 import SearchResult from "./components/SearchResult/SearchResult";
-import SearchBox from "./components/SearchBox/SearchBox";
+import AutoComplete from "./components/AutoComplete/AutoComplete";
 
 function App({ loading, setLoading }) {
   const [map, setMap] = useState(null);
   const [citiesActive, setCitiesActive] = useState(false);
   const [airportsActive, setAirportsActive] = useState(false);
-  const [json, setJson] = useState(null);
   const [searchMarker, setSearchMarker] = useState(null);
-
   const [myjson, setMyJson] = useState(null);
+  const [choosenCity, setChoosenCity] = useState("");
 
   const airports = airportsData.filter((airport) => {
     if (data.cities.find((city) => airport.city === city.city)) {
@@ -34,13 +33,12 @@ function App({ loading, setLoading }) {
     }
   });
 
-  const findMyCities = (city)=>{
-    
+  const findMyCities = (city) => {
     let lat1 = city.geometry.coordinates[1];
     let lon1 = city.geometry.coordinates[0];
-    let distance= 20000;
-    let rescity ={}
-    let lat2,lon2,a,d;
+    let distance = 20000;
+    let rescity = {};
+    let lat2, lon2, a, d;
     let p = 0.017453292519943295;
     let c = Math.cos;
     data.cities.forEach(e => {
@@ -48,16 +46,16 @@ function App({ loading, setLoading }) {
       lon2 = e.lon;   
       a = 0.5 - c((lat2 - lat1) * p)/2 + c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p))/2;
       d = 12742 * Math.asin(Math.sqrt(a));
-      if (d<=distance) {
-        distance=d;
-        rescity={
-        geometry :{coordinates: [lon2,lat2]},
-        properties:{display_name: e.city}
-      }}
+      if (d <= distance) {
+        distance = d;
+        rescity = {
+          geometry: {coordinates: [lon2,lat2]},
+          properties: {display_name: e.city}
+        };
+      }
     });
-    let midata=[
-      rescity]
-    setMyJson(midata)
+    let midata=[rescity];
+    setMyJson(midata);
   };
 
   const resultClick = (city) => {
@@ -77,14 +75,21 @@ function App({ loading, setLoading }) {
       });
     }
   };
+
+  useEffect(() => {
+    if (choosenCity) {
+      resultClick(choosenCity);
+    }
+  }, [choosenCity])
   
   return (
     <div className="App">
-
-      <SearchBox setJson={setJson} />
+      <div className="searchBox">
+        <AutoComplete setChoosenCity={setChoosenCity} />
+      </div>
 
       <div className="main">
-        <div className="results">
+        {/* <div className="results">
           {json &&
             json.map((city) => (
               <SearchResult
@@ -93,7 +98,7 @@ function App({ loading, setLoading }) {
                 resultClick={resultClick}
               />
             ))}
-        </div>
+        </div> */}
         <MapContainer
           center={{ lat: 51.505, lng: -0.09 }}
           zoom={10}
